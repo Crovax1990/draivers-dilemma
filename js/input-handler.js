@@ -201,18 +201,129 @@ class InputHandler {
         if (this.selectedVehicle.orientation === 'horizontal') {
             // Horizontal movement
             const gridDelta = Math.round(deltaX / cellSize);
-            const newCol = clamp(this.dragInitialPos.col + gridDelta, 0, 6 - this.selectedVehicle.length);
+            let targetCol = this.dragInitialPos.col + gridDelta;
 
-            // Visual update (doesn't affect game state yet)
-            this.selectedVehicle.element.style.left = `${gridToPixel(newCol)}px`;
+            // Clamp to board bounds
+            targetCol = clamp(targetCol, 0, 6 - this.selectedVehicle.length);
+
+            // Validate path step by step
+            const validCol = this._getValidDragPosition(
+                this.dragInitialPos.col,
+                targetCol,
+                this.dragInitialPos.row,
+                'horizontal'
+            );
+
+            // Visual update with validated position
+            this.selectedVehicle.element.style.left = `${gridToPixel(validCol)}px`;
         } else {
             // Vertical movement
             const gridDelta = Math.round(deltaY / cellSize);
-            const newRow = clamp(this.dragInitialPos.row + gridDelta, 0, 6 - this.selectedVehicle.length);
+            let targetRow = this.dragInitialPos.row + gridDelta;
 
-            // Visual update
-            this.selectedVehicle.element.style.top = `${gridToPixel(newRow)}px`;
+            // Clamp to board bounds
+            targetRow = clamp(targetRow, 0, 6 - this.selectedVehicle.length);
+
+            // Validate path step by step
+            const validRow = this._getValidDragPosition(
+                this.dragInitialPos.row,
+                targetRow,
+                this.dragInitialPos.col,
+                'vertical'
+            );
+
+            // Visual update with validated position
+            this.selectedVehicle.element.style.top = `${gridToPixel(validRow)}px`;
         }
+    }
+
+    /**
+     * Get valid drag position by checking path collision
+     * @private
+     * @param {number} startPos - Starting position (row or col)
+     * @param {number} targetPos - Target position (row or col)
+     * @param {number} fixedPos - Fixed position (col or row)
+     * @param {'horizontal'|'vertical'} orientation - Vehicle orientation
+     * @returns {number} Maximum valid position
+     */
+    _getValidDragPosition(startPos, targetPos, fixedPos, orientation) {
+        if (startPos === targetPos) return startPos;
+
+        const direction = targetPos > startPos ? 1 : -1;
+        let currentPos = startPos;
+
+        // Check each step of the path
+        for (let pos = startPos + direction;
+            direction > 0 ? pos <= targetPos : pos >= targetPos;
+            pos += direction) {
+
+            // Check if this move is valid
+            const canMove = orientation === 'horizontal'
+                ? this._canMoveToColumn(currentPos, pos, fixedPos)
+                : this._canMoveToRow(currentPos, pos, fixedPos);
+
+            if (canMove) {
+                currentPos = pos;
+            } else {
+                // Hit an obstacle, stop here
+                break;
+            }
+        }
+
+        return currentPos;
+    }
+
+    /**
+     * Check if vehicle can move to a new column
+     * @private
+     */
+    _canMoveToColumn(fromCol, toCol, row) {
+        const vehicle = this.selectedVehicle;
+        const direction = toCol > fromCol ? 1 : -1;
+
+        // Check the cells that will become newly occupied
+        if (direction > 0) {
+            // Moving right, check rightmost cell
+            const checkCol = toCol + vehicle.length - 1;
+            if (checkCol >= 6) return false;
+            return !this._isCellOccupiedByOther(row, checkCol);
+        } else {
+            // Moving left, check leftmost cell
+            const checkCol = toCol;
+            if (checkCol < 0) return false;
+            return !this._isCellOccupiedByOther(row, checkCol);
+        }
+    }
+
+    /**
+     * Check if vehicle can move to a new row
+     * @private
+     */
+    _canMoveToRow(fromRow, toRow, col) {
+        const vehicle = this.selectedVehicle;
+        const direction = toRow > fromRow ? 1 : -1;
+
+        // Check the cells that will become newly occupied
+        if (direction > 0) {
+            // Moving down, check bottom cell
+            const checkRow = toRow + vehicle.length - 1;
+            if (checkRow >= 6) return false;
+            return !this._isCellOccupiedByOther(checkRow, col);
+        } else {
+            // Moving up, check top cell
+            const checkRow = toRow;
+            if (checkRow < 0) return false;
+            return !this._isCellOccupiedByOther(checkRow, col);
+        }
+    }
+
+    /**
+     * Check if a cell is occupied by a different vehicle
+     * @private
+     */
+    _isCellOccupiedByOther(row, col) {
+        const occupant = this.game.board.grid[row][col];
+        return occupant !== null && occupant !== this.selectedVehicle.id;
     }
 
     /**

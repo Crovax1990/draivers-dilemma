@@ -65,9 +65,122 @@ class LevelManager {
                     { id: "car1", orientation: "vertical", length: 2, position: { row: 1, col: 3 } },
                     { id: "car2", orientation: "horizontal", length: 2, position: { row: 4, col: 1 } }
                 ]
+            },
+            {
+                id: 3,
+                difficulty: "easy",
+                minMoves: 12,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 1 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 3 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 3, col: 0 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 0, col: 0 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 4, col: 4 } }
+                ]
+            },
+            {
+                id: 4,
+                difficulty: "easy",
+                minMoves: 14,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 0 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 1, col: 2 } },
+                    { id: "truck2", orientation: "horizontal", length: 3, position: { row: 4, col: 2 } },
+                    { id: "car1", orientation: "vertical", length: 2, position: { row: 0, col: 4 } },
+                    { id: "car2", orientation: "horizontal", length: 2, position: { row: 5, col: 0 } }
+                ]
+            },
+            {
+                id: 5,
+                difficulty: "medium",
+                minMoves: 18,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 1 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 0 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 2, col: 3 } },
+                    { id: "truck3", orientation: "horizontal", length: 3, position: { row: 5, col: 1 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 0, col: 3 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 3, col: 5 } }
+                ]
+            },
+            {
+                id: 6,
+                difficulty: "medium",
+                minMoves: 20,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 0 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 2 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 3, col: 4 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 1, col: 3 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 0, col: 4 } },
+                    { id: "car3", orientation: "horizontal", length: 2, position: { row: 4, col: 0 } },
+                    { id: "car4", orientation: "vertical", length: 2, position: { row: 4, col: 2 } }
+                ]
+            },
+            {
+                id: 7,
+                difficulty: "medium",
+                minMoves: 22,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 1 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 0 } },
+                    { id: "truck2", orientation: "horizontal", length: 3, position: { row: 0, col: 3 } },
+                    { id: "truck3", orientation: "vertical", length: 3, position: { row: 1, col: 3 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 3, col: 0 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 4, col: 1 } },
+                    { id: "car3", orientation: "horizontal", length: 2, position: { row: 5, col: 4 } }
+                ]
+            },
+            {
+                id: 8,
+                difficulty: "medium",
+                minMoves: 25,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 0 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 2 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 2, col: 4 } },
+                    { id: "truck3", orientation: "horizontal", length: 3, position: { row: 5, col: 0 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 0, col: 4 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 1, col: 1 } },
+                    { id: "car3", orientation: "horizontal", length: 2, position: { row: 3, col: 2 } },
+                    { id: "car4", orientation: "vertical", length: 2, position: { row: 3, col: 5 } }
+                ]
+            },
+            {
+                id: 9,
+                difficulty: "hard",
+                minMoves: 30,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 0 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 2 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 3, col: 3 } },
+                    { id: "truck3", orientation: "horizontal", length: 3, position: { row: 0, col: 3 } },
+                    { id: "car1", orientation: "vertical", length: 2, position: { row: 1, col: 1 } },
+                    { id: "car2", orientation: "horizontal", length: 2, position: { row: 3, col: 0 } },
+                    { id: "car3", orientation: "vertical", length: 2, position: { row: 4, col: 1 } },
+                    { id: "car4", orientation: "horizontal", length: 2, position: { row: 5, col: 4 } }
+                ]
+            },
+            {
+                id: 10,
+                difficulty: "hard",
+                minMoves: 35,
+                vehicles: [
+                    { id: "player", orientation: "horizontal", length: 2, position: { row: 2, col: 1 }, isPlayer: true },
+                    { id: "truck1", orientation: "vertical", length: 3, position: { row: 0, col: 0 } },
+                    { id: "truck2", orientation: "vertical", length: 3, position: { row: 1, col: 3 } },
+                    { id: "truck3", orientation: "horizontal", length: 3, position: { row: 4, col: 1 } },
+                    { id: "truck4", orientation: "vertical", length: 3, position: { row: 3, col: 5 } },
+                    { id: "car1", orientation: "horizontal", length: 2, position: { row: 0, col: 4 } },
+                    { id: "car2", orientation: "vertical", length: 2, position: { row: 0, col: 1 } },
+                    { id: "car3", orientation: "horizontal", length: 2, position: { row: 3, col: 0 } },
+                    { id: "car4", orientation: "vertical", length: 2, position: { row: 4, col: 4 } }
+                ]
             }
         ];
         this.loaded = true;
+        this._loadProgress();
+        console.log(`Loaded ${this.levels.length} default levels (JSON fetch failed)`);
     }
 
     /**

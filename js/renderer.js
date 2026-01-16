@@ -81,9 +81,25 @@ class Renderer {
             element.dataset.vehicleId = vehicle.id;
             element.dataset.orientation = vehicle.orientation;
 
+            // Add truck class for 3-cell vehicles
+            if (vehicle.length === 3) {
+                element.classList.add('truck');
+            }
+
+            // Add emoji icons based on vehicle type
             if (vehicle.isPlayer) {
                 element.classList.add('player');
                 element.textContent = '🚗';
+            } else {
+                // Different icons for cars vs trucks
+                if (vehicle.length === 3) {
+                    // Trucks get truck emoji
+                    element.textContent = '🚚';
+                } else {
+                    // Cars get car emoji - variety for visual interest
+                    const carIcons = ['🚙', '🚕', '🚐'];
+                    element.textContent = carIcons[colorIndex % carIcons.length];
+                }
             }
 
             this.boardElement.appendChild(element);

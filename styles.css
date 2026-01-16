@@ -453,9 +453,93 @@ header {
     cursor: grabbing;
 }
 
+
 .vehicle.player {
     background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
     border: 2px solid var(--color-accent-light);
+}
+
+/* Vehicle Windows and Details */
+.vehicle::before {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+/* Horizontal car windows */
+.vehicle[data-orientation="horizontal"]:not(.truck)::before {
+    width: 40%;
+    height: 50%;
+    top: 25%;
+    left: 30%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Vertical car windows */
+.vehicle[data-orientation="vertical"]:not(.truck)::before {
+    width: 50%;
+    height: 40%;
+    top: 30%;
+    left: 25%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Truck cab for horizontal trucks */
+.vehicle[data-orientation="horizontal"].truck::before {
+    width: 30%;
+    height: 60%;
+    top: 20%;
+    right: 5%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Truck cab for vertical trucks */
+.vehicle[data-orientation="vertical"].truck::before {
+    width: 60%;
+    height: 30%;
+    bottom: 5%;
+    left: 20%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Headlights/Details */
+.vehicle::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+/* Horizontal vehicle lights */
+.vehicle[data-orientation="horizontal"]::after {
+    width: 8px;
+    height: 8px;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    box-shadow: 0 -12px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Vertical vehicle lights */
+.vehicle[data-orientation="vertical"]::after {
+    width: 8px;
+    height: 8px;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    box-shadow: 12px 0 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Decorative stripe for trucks */
+.vehicle.truck {
+    background-image: linear-gradient(to right,
+            transparent 0%,
+            transparent 48%,
+            rgba(255, 255, 255, 0.1) 48%,
+            rgba(255, 255, 255, 0.1) 52%,
+            transparent 52%,
+            transparent 100%);
 }
 
 /* Keyboard Hints */
@@ -483,6 +567,11 @@ header {
     padding: 0;
     max-width: 500px;
     width: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
 }
 
 .modal::backdrop {
